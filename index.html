@@ -69,16 +69,48 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #48cc6c 100%);
             backdrop-filter: blur(10px);
             border: 4px solid rgba(255, 255, 255, 0.3);
             margin: 0 auto 2rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
+            font-size: 3rem;
             color: white;
             animation: pulse 2s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="tech-gradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23667eea;stop-opacity:0.3"/><stop offset="50%" style="stop-color:%2348cc6c;stop-opacity:0.2"/><stop offset="100%" style="stop-color:%23764ba2;stop-opacity:0.3"/></linearGradient></defs><circle cx="20" cy="30" r="2" fill="rgba(255,255,255,0.4)"/><circle cx="70" cy="20" r="1.5" fill="rgba(255,255,255,0.3)"/><circle cx="80" cy="60" r="2.5" fill="rgba(255,255,255,0.2)"/><circle cx="30" cy="80" r="1" fill="rgba(255,255,255,0.4)"/><circle cx="60" cy="70" r="1.5" fill="rgba(255,255,255,0.3)"/><path d="M15,50 Q30,40 45,50 T75,50" stroke="rgba(255,255,255,0.2)" stroke-width="1" fill="none"/><path d="M25,25 L35,35 M35,25 L25,35" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><rect x="65" y="75" width="8" height="8" rx="1" fill="rgba(255,255,255,0.25)"/></svg>')
+        }
+
+        .profile-icon {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .tech-icon {
+            font-size: 2rem;
+            animation: rotate 4s linear infinite;
+        }
+
+        .nature-icon {
+            font-size: 1.8rem;
+            animation: float 3s ease-in-out infinite;
+            animation-delay: 1s;
         }
 
         .header h1 {
@@ -479,7 +511,10 @@
         <div class="container">
             <div class="header-content">
                 <div class="profile-img">
-                    <i class="fas fa-user"></i>
+                    <div class="profile-icon">
+                        <i class="fas fa-code tech-icon"></i>
+                        <i class="fas fa-leaf nature-icon"></i>
+                    </div>
                 </div>
                 <h1>Gudapuvalasa Tilak</h1>
                 <p class="subtitle">Senior Associate Platform L1 | Java Microservices Expert</p>
