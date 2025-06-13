@@ -169,10 +169,15 @@
             position: relative;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover,
+        .nav-links a.active {
             background: var(--primary-color);
             color: white;
             transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         }
 
         /* Main Content */
@@ -678,6 +683,44 @@
                 nav.style.background = 'rgba(255, 255, 255, 0.95)';
                 nav.style.boxShadow = 'none';
             }
+
+            // Update active navigation link based on scroll position
+            updateActiveNavLink();
+        });
+
+        // Function to update active navigation link
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('.section, .contact');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150; // Offset for header
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.id;
+                }
+            });
+            
+            // Handle special case for contact section at bottom
+            if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 10) {
+                currentSection = 'contact';
+            }
+            
+            // Update nav links
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Initialize active link on page load
+        window.addEventListener('load', function() {
+            updateActiveNavLink();
         });
 
         // Intersection Observer for animations
